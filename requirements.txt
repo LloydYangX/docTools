@@ -1,0 +1,10 @@
+# 所有脚本的依赖
+# 按需安装所需依赖
+
+# 对于 remove_images_from_docx.py
+python-docx>=0.8.11
+
+# 对于 remove_images_lxml.py
+lxml>=4.9.0
+
+# remove_images_direct.py 不需要额外依赖 
