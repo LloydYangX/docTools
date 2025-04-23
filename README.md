@@ -1,4 +1,8 @@
-# DOCX图片移除工具
+# DOCX文档处理工具集
+
+这个项目提供了多个Python脚本，用于处理Word文档(.docx)，包括图片移除、文档格式转换等功能。
+
+## DOCX图片移除工具
 
 这个项目提供了三个不同的Python脚本，用于从Word文档(.docx)中移除所有图片，同时保留文档的其他内容。
 
@@ -143,4 +147,41 @@ python docx_to_markdown_enhanced.py 输入文件.docx [输出文件.md]
 2. **remove_images_direct.py**: 使用Python标准库实现
 3. **remove_images_lxml.py**: 使用lxml库实现
 
-详细说明请参考本文档上方的"DOCX图片移除工具"部分。 
+详细说明请参考本文档上方的"DOCX图片移除工具"部分。
+
+## Markdown转Word脚本
+
+本仓库还包含一个将Markdown文档转换为Word(.docx)格式的脚本:
+
+### markdown_to_docx.py
+
+**特点:**
+- 支持大部分Markdown语法元素转换为相应的Word格式
+- 处理标题、段落、列表、表格、代码块和引用等
+- 支持内联格式如粗体、斜体和链接
+- 可处理本地和网络图片，并将其嵌入到Word文档中
+
+**依赖:**
+```
+Markdown>=3.3.0
+python-docx>=0.8.11
+beautifulsoup4>=4.9.0
+requests>=2.25.0
+```
+
+**使用方法:**
+```
+python markdown_to_docx.py 输入文件.md [输出文件.docx]
+```
+
+**工作流程:**
+1. 解析Markdown文件，提取其中的文本内容和图片
+2. 将Markdown转换为HTML中间格式
+3. 解析HTML，转换为Word文档元素
+4. 处理并嵌入文档中引用的所有图片
+5. 生成最终的Word文档
+
+**注意事项:**
+- 转换后的格式和样式可能与原始Markdown有所不同
+- 部分复杂的Markdown元素可能不能完美转换
+- 对于本地图片，确保引用路径正确可访问 

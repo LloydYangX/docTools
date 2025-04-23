@@ -14,4 +14,10 @@ python-docx>=0.8.11
 
 # 增强版docx_to_markdown_enhanced.py脚本依赖
 mammoth>=1.5.0
-html2markdown>=0.1.7 
+html2markdown>=0.1.7
+
+# markdown_to_docx.py脚本依赖
+Markdown>=3.3.0
+python-docx>=0.8.11
+beautifulsoup4>=4.9.0
+requests>=2.25.0 
