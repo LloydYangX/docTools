@@ -77,3 +77,70 @@ python remove_images_lxml.py 我的文档.docx 无图片文档.docx
 - 处理前请备份原始文档
 - 这些脚本会移除所有图片，没有选择性保留的功能
 - 处理后的文档可能在图片原位置留下空白区域 
+
+## Word文档转Markdown脚本
+
+本仓库包含两个将Word文档(.docx)转换为Markdown格式的脚本:
+
+### 1. docx_to_markdown.py
+
+使用python-docx库直接解析.docx文件并转换为Markdown。
+
+**特点:**
+- 直接使用python-docx解析文档结构
+- 支持基本的文本样式、标题、列表和表格
+- 能够提取并保存文档中的图片
+
+**依赖:**
+```
+python-docx>=0.8.11
+```
+
+**使用方法:**
+```
+python docx_to_markdown.py 输入文件.docx [输出文件.md]
+```
+
+### 2. docx_to_markdown_enhanced.py
+
+使用mammoth库进行中间HTML转换，支持更丰富的格式和样式。
+
+**特点:**
+- 通过HTML中间转换，更准确地处理复杂样式和格式
+- 支持更多的Word样式元素（引用、目录、代码块等）
+- 更好的表格和列表格式支持
+- 优化的图片处理方式
+
+**依赖:**
+```
+python-docx>=0.8.11
+mammoth>=1.5.0
+html2markdown>=0.1.7
+```
+
+**使用方法:**
+```
+python docx_to_markdown_enhanced.py 输入文件.docx [输出文件.md]
+```
+
+## 两个转换脚本的比较
+
+| 功能 | docx_to_markdown.py | docx_to_markdown_enhanced.py |
+| --- | --- | --- |
+| 基本文本转换 | ✓ | ✓ |
+| 图片提取 | ✓ | ✓ |
+| 表格支持 | 基本支持 | 更好的格式处理 |
+| 复杂样式 | 有限支持 | 更全面支持 |
+| 转换原理 | 直接解析 | HTML中间转换 |
+| 依赖库 | 较少 | 较多 |
+| 速度 | 较快 | 可能较慢 |
+
+## 移除Word文档中的图片脚本
+
+本仓库还包含以下几个用于移除Word文档中图片的脚本:
+
+1. **remove_images_from_docx.py**: 使用python-docx库实现
+2. **remove_images_direct.py**: 使用Python标准库实现
+3. **remove_images_lxml.py**: 使用lxml库实现
+
+详细说明请参考本文档上方的"DOCX图片移除工具"部分。 

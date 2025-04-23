@@ -8,3 +8,10 @@ python-docx>=0.8.11
 lxml>=4.9.0
 
 # remove_images_direct.py 不需要额外依赖 
+
+# 原始docx_to_markdown.py脚本依赖
+python-docx>=0.8.11
+
+# 增强版docx_to_markdown_enhanced.py脚本依赖
+mammoth>=1.5.0
+html2markdown>=0.1.7 
