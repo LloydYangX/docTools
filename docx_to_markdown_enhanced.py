@@ -15,6 +15,7 @@ import shutil
 import re
 import json
 from html import escape as html_escape
+import base64
 try:
     import mammoth
     import html2markdown
@@ -100,7 +101,6 @@ def convert_images_to_markdown_links(html_content, image_dir, root_path):
         img_path = os.path.join(image_dir, filename)
         rel_path = os.path.join('images', filename)
         
-        import base64
         with open(img_path, 'wb') as f:
             f.write(base64.b64decode(img_data))
         
@@ -135,6 +135,13 @@ def create_custom_style_map():
         "p[style-name='Code']": "pre.code",
         "r[style-name='Code Char']": "code"
     }
+
+def base64_bytes_image(image):
+    """从mammoth图片对象中获取base64编码的数据"""
+    with image.open() as image_bytes:
+        # 大多数情况下是bytes对象，需要读取
+        image_data = image_bytes.read() if hasattr(image_bytes, 'read') else image_bytes
+        return base64.b64encode(image_data).decode('ascii')
 
 def docx_to_markdown(input_path, output_path=None):
     """
@@ -173,8 +180,8 @@ def docx_to_markdown(input_path, output_path=None):
                 style_map=style_map_str,
                 include_embedded_style_map=True,
                 ignore_empty_paragraphs=True,
-                convert_image=mammoth.images.img_element(lambda image, _: {
-                    "src": f"data:image/{image.content_type.split('/')[-1]};base64,{image.base64_bytes()}"
+                convert_image=mammoth.images.img_element(lambda image: {
+                    "src": f"data:{image.content_type};base64,{base64_bytes_image(image)}"
                 })
             )
             
